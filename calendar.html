@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - SATS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <a href="index.html" class="logo"><span style="font-size: 1.5rem;">SATS</span></a>
+            <ul class="sidebar-nav">
+                <li><a href="checkin.html"><span>📍</span> Check-in</a></li>
+                <li><a href="history.html"><span>📊</span> History</a></li>
+                <li><a href="calendar.html" class="active"><span>📅</span> Calendar</a></li>
+                <li><a href="contact.html"><span>💬</span> Support</a></li>
+                <li style="margin-top: auto;"><a href="index.html"><span>🚪</span> Logout</a></li>
+            </ul>
+            <div class="user-profile">
+                <div class="user-avatar"
+                    style="background-image: url('https://ui-avatars.com/api/?name=Student&background=random');"></div>
+                <div class="user-info">
+                    <h4>Student Name</h4><span>Student</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <div class="breadcrumbs">
+                        Home <span class="separator">/</span> <span>Calendar</span>
+                    </div>
+                    <h2>Attendance Calendar</h2>
+                </div>
+                <div class="top-bar-actions">
+                    <div class="notification-icon">
+                        <span>🔔</span>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar-container">
+                <div class="calendar-controls">
+                    <button id="prevMonth" class="btn-outline">&lt;</button>
+                    <h3 class="calendar-header-title">
+                        <span id="currentMonth">December</span>
+                        <span id="currentYear" class="clickable-year" title="Click to change year">2025</span>
+                    </h3>
+                    <button id="nextMonth" class="btn-outline">&gt;</button>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Days will be populated by JS -->
+                </div>
+
+                <div class="calendar-legend">
+                    <div class="legend-item"><span class="dot present"></span> Present</div>
+                    <div class="legend-item"><span class="dot absent"></span> Absent (Not Recorded)</div>
+                </div>
+            </div>
+
+            <!-- Attendance Details Modal -->
+            <div id="attendanceModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3 id="modalDate">Date Details</h3>
+                    <div id="modalBody">
+                        <!-- Session details will go here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/calendar.js"></script>
+</body>
+
+</html>

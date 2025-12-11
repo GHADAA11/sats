@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-in - SATS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Dashboard Layout -->
+    <div class="app-container">
+        <!-- Floating Dock Sidebar -->
+        <aside class="sidebar animate-entry delay-1">
+            <div class="logo">
+                SATS
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="checkin.html" class="active">
+                    <span>📍</span> Check In
+                </a>
+                <a href="history.html">
+                    <span>📊</span> History
+                </a>
+                <a href="calendar.html">
+                    <span>📅</span> Calendar
+                </a>
+                <a href="contact.html">
+                    <span>💬</span> Support
+                </a>
+            </nav>
+
+            <div class="user-profile mt-2">
+                <div class="avatar">J</div>
+                <div class="user-info">
+                    <p class="name">John</p>
+                    <p class="role">ID: 2023001</p>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-outline mt-2"
+                style="justify-content: center; text-align: center;">Logout</a>
+        </aside>
+
+        <!-- Main Content (Windowed) -->
+        <main class="main-content animate-entry delay-2">
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <div class="breadcrumbs">
+                        Home <span class="separator">/</span> <span>Check-in</span>
+                    </div>
+                    <h2>Class Check-in</h2>
+                </div>
+
+
+            </div>
+
+            <div class="form-container animate-entry delay-3" style="margin: 2rem auto 0;">
+                <!-- Centered form in dashboard -->
+                <div id="authCheck" style="display: none;" class="mb-2 text-center text-danger">
+                    Please <a href="index.html">Login</a> to check in.
+                </div>
+
+                <form id="checkinForm">
+                    <div class="form-group">
+                        <label for="classCode">Class Code</label>
+                        <input type="text" id="classCode" class="form-control" required
+                            placeholder="Enter code provided by instructor">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="securityAnswer">What is today's lecture topic?</label>
+                        <input type="text" id="securityAnswer" class="form-control" placeholder="Optional Answer">
+                        <small style="color: #666;">(Optional verification)</small>
+                    </div>
+
+                    <div id="message" class="mb-1 text-center"></div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Check In</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- No Footer in Dashboard Mode (usually) or small footer at bottom of main -->
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/attendance.js"></script>
+</body>
+
+</html>
