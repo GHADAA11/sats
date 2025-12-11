@@ -1,0 +1,928 @@
+:root {
+    /* ENTERPRISE THEME - Indigo/Violet */
+    --primary-color: #6366f1;
+    /* Indigo-500 */
+    --primary-hover: #4f46e5;
+    /* Indigo-600 */
+    --secondary-color: #8b5cf6;
+    /* Violet-500 */
+    --accent-color: #0ea5e9;
+    /* Sky-500 */
+
+    --bg-body: #f8fafc;
+    /* Slate-50 */
+    --bg-card: #ffffff;
+    /* White */
+
+    --text-main: #1e293b;
+    /* Slate-800 */
+    --text-muted: #64748b;
+    /* Slate-500 */
+    --border-color: #e2e8f0;
+    /* Slate-200 */
+
+    --success: #22c55e;
+    --warning: #eab308;
+    --danger: #ef4444;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-colored: 0 10px 25px -5px rgba(99, 102, 241, 0.25);
+    /* Indigo Glow */
+
+    --font-main: 'Outfit', sans-serif;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body & Layout */
+/* Body & Layout */
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    display: block;
+
+    /* Global Background */
+    background-image: url('../images/hero_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Global Overlay for readability */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(248, 250, 252, 0.85);
+    /* White Overlay default */
+    z-index: -1;
+}
+
+/* Landing Page Specific Override */
+body.landing-page {
+    background-image: url('../images/landing_bg.png');
+    /* Keep size/position inherited from body */
+}
+
+/* Adjust overlay specifically for Landing Page to make the Abstract art fully visible */
+body.landing-page::before {
+    background: none;
+    /* No overlay, show full image color */
+    /* Alternatively, a very light dark tint if text needs contrast, but let's try raw first */
+}
+
+/* Remove old marketing-page class as it's now global */
+/* body.marketing-page { ... } removed */
+
+/* APP / DASHBOARD Layout (Clean Slate) */
+/* Default body is already clean slate from var(--bg-body), ensuring it's solid */
+/* Body already defined above */
+
+/* FLOATING HUD LAYOUT (Dashboard) */
+.app-container {
+    display: flex;
+    /* Changed from Grid to Flex */
+    min-height: 100vh;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    max-width: 1600px;
+    margin: 0 auto;
+    align-items: flex-start;
+    /* Prevent stretching */
+}
+
+.sidebar {
+    width: 260px;
+    height: calc(100vh - 3rem);
+    /* Full height minus padding */
+    position: sticky;
+    top: 1.5rem;
+    border-radius: 24px;
+    /* Floating look */
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Remove border-right as it is now full border */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    /* Prevent overflow */
+    background: rgba(15, 23, 42, 0.4);
+    /* HUD Container BG */
+    border-radius: 24px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: calc(100vh - 3rem);
+    overflow-y: auto;
+}
+
+/* Sidebar Links Update for Dock Look */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.sidebar-nav a {
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.2s ease;
+}
+
+/* Sidebar Nav */
+.sidebar .logo {
+    margin-bottom: 3rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    background: var(--white);
+    color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-nav a.active {
+    font-weight: 600;
+}
+
+/* User Profile Snippet in Sidebar */
+.user-profile {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    background-size: cover;
+}
+
+.user-info h4 {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.user-info span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Clean Header for Dashboard (Top Bar) */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.top-bar h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.75rem;
+}
+
+.search-bar {
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    width: 300px;
+    color: var(--text-muted);
+}
+
+/* Since body is now dark, we need to ensure global text color handles it,
+   OR rely on containers being light.
+   Headings outside containers might be invisible.
+   `index.html`: `h2` "Why SATS?".
+   I should update headings to be light if they are direct children of main?
+   Or just make containers light.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-main);
+    /* Default is dark */
+}
+
+/* If text is outside container, it needs to be white.
+   But if I change var(--text-main) to white, then inside white containers it will be invisible.
+   I will keep var(--text-main) dark, and ensure containers have light background.
+   For text OUTSIDE containers (like page titles if any), I might need a utility or specific rule.
+*/
+
+/* Navbar */
+header {
+    background-color: var(--bg-card);
+    /* Fallback */
+    background: rgba(255, 255, 255, 0.85);
+    /* Glass effect */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    letter-spacing: -0.025em;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Layout */
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    width: 100%;
+}
+
+/* Footer */
+footer {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 2rem;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 0.9rem;
+}
+
+/* Global Animations */
+@keyframes enter-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes enter-scale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(217, 70, 239, 0.2);
+        border-color: rgba(217, 70, 239, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(6, 182, 212, 0.3);
+        border-color: rgba(6, 182, 212, 0.4);
+    }
+}
+
+.animate-entry {
+    animation: enter-slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    /* Hidden initially */
+}
+
+/* Staggered Delays */
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+.delay-4 {
+    animation-delay: 0.4s;
+}
+
+/* Interactive Hover - Breathe Effect */
+.card-style,
+.feature-card,
+.visual-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-style:hover,
+.feature-card:hover {
+    animation: breathe 3s infinite alternate;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+    /* Purple Balloon Gradient */
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    /* Full pill/balloon shape */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    /* Outer glow + Inner highlight for 3D effect */
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    /* Gradient Shift */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
+    /* Cyan Glow */
+}
+
+.btn-record {
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+    margin-left: 1rem;
+}
+
+.btn-record:hover {
+    background: rgba(239, 68, 68, 0.1);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--primary-hover);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}
+
+/* Forms - Glassmorphism */
+/* .form-container merged into card-style group */
+.form-container {
+    max-width: 480px;
+    margin: 3rem auto;
+    background: rgba(255, 255, 255, 0.9);
+    /* High opacity for readability */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    /* Glass shadow */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+/* Inputs - Dark Field */
+input,
+select,
+textarea,
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: var(--font-main);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--text-main);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Utilities */
+.text-center {
+    text-align: center;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+/* Enterprise Card Style (Solid, Crisp) */
+
+/* Orphaned cards block removed */
+
+/* Enterprise Data Table */
+/* Dark Table Styles */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.data-table th {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.data-table tr:hover {
+    background-color: rgba(34, 197, 94, 0.05);
+    /* Green tint hover */
+}
+
+
+
+/* Breadcrumbs & Notification */
+.top-bar-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.breadcrumbs {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breadcrumbs span.separator {
+    color: #cbd5e1;
+}
+
+.top-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    transition: color 0.2s;
+}
+
+.notification-icon:hover {
+    color: var(--primary-color);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--danger);
+    color: white;
+    font-size: 0.65rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 2px solid #fff;
+}
+
+/* Dark Cards (Unified) */
+.card-style,
+.feature-card,
+.form-container,
+.table-container,
+.calendar-container {
+    background: var(--bg-card) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    /* Subtle white border */
+    color: var(--text-main);
+}
+
+.card-style:hover,
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(34, 197, 94, 0.1) !important;
+    border-color: rgba(34, 197, 94, 0.3) !important;
+    /* Green border on hover */
+}
+
+/* Headings Upgrade */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    position: relative;
+    /* Ensure z-index works if needed */
+}
+
+/* Helper to make text readable on dark background if strictly outside container */
+main>h2,
+main>p {
+    color: var(--white);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Exception: Hero has its own styles */
+.hero h1,
+.hero p {
+    text-shadow: none;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Landing Page Specifics */
+/* Enterprise Hero */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+.hero-content {
+    text-align: left;
+    z-index: 10;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+}
+
+/* Remove Trading Visuals CSS */
+.hero-visuals {
+    display: none;
+}
+
+.hero-glass-content {
+    display: block;
+    background: none;
+    border: none;
+    padding: 0;
+    backdrop-filter: none;
+}
+
+/* Floating Visuals Area */
+height: 400px;
+margin-top: 2rem;
+perspective: 1000px;
+}
+
+.visual-card {
+    position: absolute;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-weight: 700;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.visual-main {
+    width: 60%;
+    height: 300px;
+    left: 20%;
+    top: 50px;
+    z-index: 10;
+    background: linear-gradient(180deg, rgba(20, 30, 50, 0.9), rgba(10, 15, 30, 0.95));
+    border-top: 1px solid rgba(34, 197, 94, 0.6);
+    /* Simulated Graph Line */
+}
+
+.visual-badge {
+    padding: 1rem 2rem;
+    z-index: 12;
+    background: #000;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Fix missing brace */
+.badge-left {
+    top: 120px;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.badge-right {
+    top: 200px;
+    right: 5%;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.hero .btn {
+    background: var(--white);
+    color: var(--primary-color);
+    border-radius: var(--radius-md);
+    /* Revert to standard radius */
+    padding: 0.8rem 2.2rem;
+    font-weight: 600;
+    text-transform: none;
+    /* Revert uppercase */
+    letter-spacing: normal;
+    font-size: 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+.hero .btn:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* Removed duplicate feature-card styles as they are now grouped with card-style */
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Table Styles (from History Page) - Glassmorphism */
+.table-container {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th,
+td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+.badge-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
